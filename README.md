@@ -170,6 +170,9 @@ public:
 **输入**: listA = [0,9,1,2,4], listB = [3,2,4]
 
 **输出**: Reference of the node with value = 2
+
+![avatar](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png)
+
  ```
 class Solution {
 public:
