@@ -103,3 +103,16 @@ public:
     }
 };
  ```
+ ```
+ class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if head == None: return None
+        cur, pre, tmp = None, head, head.next
+        while tmp:
+            pre.next = cur
+            cur = pre
+            pre = tmp
+            tmp = tmp.next
+        pre.next = cur
+        return pre
+ ```
