@@ -130,7 +130,7 @@ public:
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
- if(l1 == NULL) {
+        if(l1 == NULL) {
             return l2;
         }
         if(l2 == NULL) {
