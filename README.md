@@ -161,3 +161,46 @@ public:
             l2.next = self.mergeTwoLists(l1, l2.next)
             return l2
  ```
+## 52. 两个链表的第一个公共节点
+
+输入两个链表，找出它们的第一个公共节点。
+
+***示例***
+
+**输入**: listA = [0,9,1,2,4], listB = [3,2,4]
+
+**输出**: Reference of the node with value = 2
+ ```
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *curA = headA, *curB = headB;
+        while (curA != curB) {
+            if (curA != NULL) 
+                curA = curA->next;
+            else
+                curA = headB;
+            if (curB != NULL)
+                curB = curB->next;
+            else    
+                curB = headA;
+        }
+        return curA;
+    }
+};
+ ```
+ ```
+ class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        curA, curB = headA, headB
+        while curA != curB:
+            if curA != None:
+                curA = curA.next
+            else:
+                curA = headB
+            if curB != None:
+                curB = curB.next
+            else:
+                curB = headA
+        return curA
+  ```
