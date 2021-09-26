@@ -24,3 +24,17 @@ public:
     }
 };
 ```
+```
+class Solution:
+    def deleteNode(self, head: ListNode, val: int) -> ListNode:
+        pre, cur = head, head.next
+        if head.val == val:
+            return head.next
+        while cur:
+            if cur.val == val:
+                pre.next = cur.next
+                cur.next = None
+            pre = cur
+            cur = cur.next
+        return head
+```
