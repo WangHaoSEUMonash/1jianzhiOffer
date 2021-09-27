@@ -389,13 +389,11 @@ class Solution {
 public:
     char firstUniqChar(string s) {
         unordered_map<int, int> frequency;
-        for(char a : s){
-            ++frequency[a];
-        }
+        for(char a : s)
+            ++frequency[a];        
         for(int i = 0; i < s.size(); i++){
-            if(frequency[s[i]] == 1){
-                return s[i];
-            }
+            if(frequency[s[i]] == 1)
+                return s[i];     
         }
         return ' ';
     }
