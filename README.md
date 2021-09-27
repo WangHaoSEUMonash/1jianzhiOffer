@@ -245,3 +245,17 @@ public:
     }
 };
   ```
+  ```
+class Solution:
+    def fib(self, n: int) -> int:
+        result = [0, 1]
+        if n < 2:
+            return result[n]
+        fibN_minus1, fibN_minus2 = 1, 0
+        fibN = 0
+        for i in range(2, n+1):
+            fibN = (fibN_minus1 + fibN_minus2) % 1000000007
+            fibN_minus2 = fibN_minus1
+            fibN_minus1 = fibN           
+        return fibN
+   ```
