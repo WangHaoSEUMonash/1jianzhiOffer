@@ -271,3 +271,27 @@ class Solution:
 **输出**: 6
 
 **解释**: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+   ```
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int ans = nums[0];
+        for (int i = 1; i < nums.size(); i++) {
+            if (nums[i - 1] > 0)
+                nums[i] += nums[i - 1];
+            ans = max(ans, nums[i]);
+        }
+        return ans;
+    }
+};
+   ```
+   ```
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        res = nums[0]
+        for i in range(1,len(nums)):
+            if nums[i-1] > 0:
+                nums[i] += nums[i-1]
+            res = max(res, nums[i])
+        return res
+   ```   
