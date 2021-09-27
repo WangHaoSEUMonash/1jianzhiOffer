@@ -382,6 +382,8 @@ class Solution:
 **输入**: s = "abaccdeff"
 
 **输出**: 'b'
+
+C++里有一个**unorder_map<int, int>**函数， python
 ```  
 class Solution {
 public:
