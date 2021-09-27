@@ -338,7 +338,7 @@ class Solution:
 ```   
 # 哈希表
 ## 3. [数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
-***示例1***
+***示例***
 
 **输入**: [2, 3, 1, 0, 2, 5, 3]
 
@@ -360,4 +360,16 @@ public:
         return -1;
     }
 };
+```   
+```   
+class Solution:
+    def findRepeatNumber(self, nums: List[int]) -> int:
+        for i in range(0, len(nums)):
+            while nums[i] != i:
+                if nums[i] == nums[nums[i]]:
+                    return nums[i]
+                temp = nums[i]
+                nums[i] = nums[temp]
+                nums[temp] = temp
+        return -1
 ```   
