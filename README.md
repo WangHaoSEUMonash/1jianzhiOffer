@@ -336,3 +336,28 @@ class Solution:
             maxBenefit = max(maxBenefit, price - minCost)
         return maxBenefit
 ```   
+# 哈希表
+## 3. [数组中重复的数字](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+***示例1***
+
+**输入**: [2, 3, 1, 0, 2, 5, 3]
+
+**输出**: 2或3
+
+```   
+class Solution {
+public:
+    int findRepeatNumber(vector<int>& nums) {
+        for (int i = 0; i < nums.size(); i++) {
+            while (nums[i] != i) {
+                if (nums[i] == nums[nums[i]])
+                    return nums[i];
+                int temp = nums[i];
+                nums[i] = nums[temp];
+                nums[temp] = temp;
+            }
+        }
+        return -1;
+    }
+};
+```   
