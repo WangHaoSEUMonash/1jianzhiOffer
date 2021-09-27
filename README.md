@@ -383,7 +383,7 @@ class Solution:
 
 **输出**: 'b'
 
-C++里有一个 **unorder_map<int, int>** 函数， python
+C++里有一个 **unorder_map<int, int>** 函数， python使用**字典**
 ```  
 class Solution {
 public:
@@ -400,4 +400,14 @@ public:
         return ' ';
     }
 };
+```  
+```  
+class Solution:
+    def firstUniqChar(self, s: str) -> str:
+        dic = {}
+        for c in s:
+            dic[c] = not c in dic
+        for k, v in dic.items():
+            if v: return k
+        return ' '
 ```  
