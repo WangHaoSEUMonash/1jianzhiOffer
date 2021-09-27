@@ -225,4 +225,23 @@ F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
 
 **输出**: 1
 
- 
+  ```
+class Solution {
+public:
+    int fib(int n) {
+        int result[2] = {0,1};
+        if (n < 2)
+            return result[n];
+
+        int fibN_minus_1 = 1;
+        int fibN_minus_2 = 0;
+        int fibN = 0;
+        for (int i = 2; i <= n; ++i) {
+            fibN = (fibN_minus_1 + fibN_minus_2) % 1000000007;
+            fibN_minus_2 = fibN_minus_1;
+            fibN_minus_1 = fibN;
+        }
+        return fibN;
+    }
+};
+  ```
