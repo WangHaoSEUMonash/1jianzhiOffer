@@ -313,3 +313,26 @@ class Solution:
 **输出**: 0
 
 **解释**: 在这种情况下, 没有交易完成, 所以最大利润为 0。
+
+```   
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int minCost = 10000000, maxBenefit = 0;
+        for (int price: prices) {
+            minCost = min(minCost, price);
+            maxBenefit = max(maxBenefit, price - minCost);
+        }
+        return maxBenefit;
+    }
+};
+```   
+```   
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        minCost, maxBenefit = 10000000, 0
+        for price in prices:
+            minCost = min(minCost, price)
+            maxBenefit = max(maxBenefit, price - minCost)
+        return maxBenefit
+```   
