@@ -386,7 +386,7 @@ class Solution:
 class Solution {
 public:
     char firstUniqChar(string s) {
-        **unordered_map<int, int>** frequency;
+        unordered_map<int, int> frequency;
         for(char a : s){
             ++frequency[a];
         }
