@@ -259,6 +259,45 @@ class Solution:
             fibN_minus1 = fibN           
         return fibN
    ```
+## 10-II. [青蛙跳台阶问题](https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/)   
+
+一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。
+
+~~答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。~~
+
+***示例***
+
+**输入**: n = 7
+
+**输出**: 21
+
+很像斐波那契数列
+
+```
+class Solution {
+public:
+    int numWays(int n) {
+        int base[2] = {1,1};
+        int ans_1 = 1, ans_2 = 1, ans = 0;
+        if (n == 0 || n == 1) return 1;
+        else
+        for (int i = 2; i <= n; i++) {
+            ans = (ans_1 + ans_2) % 1000000007;
+            ans_2 = ans_1;
+            ans_1 = ans;
+        }
+        return ans;
+    }
+};
+```
+```
+class Solution:
+    def numWays(self, n: int) -> int:
+        a, b = 1, 1
+        for _ in range(n):
+            a, b = b, a + b
+        return a % 1000000007
+```
 ## 42. [连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
 输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
 
