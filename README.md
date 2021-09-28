@@ -880,3 +880,40 @@ class Solution:
    2
 ```  
 **输出**: 4
+
+```  
+反向深度优先遍历（右子树）
+
+class Solution {
+public:
+    int ans = 0, count = 0;
+    int kthLargest(TreeNode* root, int k) {
+        reverse_dfs(root, k);
+        return ans;
+    }
+
+    void reverse_dfs(TreeNode* root, int k){
+        if (root == NULL) return;
+        reverse_dfs(root->right, k);
+        if (count == k) return;
+        count ++;
+        if (count == k) ans = root->val;
+        reverse_dfs(root->left, k);
+    }
+};
+```  
+```  
+class Solution:
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        def dfs(root):
+            if not root: return
+            dfs(root.right)
+            if self.k == 0: return
+            self.k -= 1
+            if self.k == 0: self.res = root.val
+            dfs(root.left)
+
+        self.k = k
+        dfs(root)
+        return self.res
+```  
