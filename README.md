@@ -482,3 +482,35 @@ class Solution:
 **输出**: 3
 
 **解释**: 节点 5 和节点 1 的最近公共祖先是 3。
+
+```  
+class Solution {
+public:
+    unordered_map<TreeNode*, TreeNode*> parent_map;
+    unordered_set<TreeNode*> parents; //散列表，判断是否出现过
+    void dfs(TreeNode *root) { //通过递归访问左右子树
+        if (root->left != NULL) {
+            parent_map[root->left] = root;
+            dfs(root->left);
+        }
+        if (root->right != NULL) {
+            parent_map[root->right] = root;
+            dfs(root->right);
+        }
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        parent_map[root] = NULL; //建立父节点映射
+        dfs(root);
+        while (p != NULL) { //p的祖先都加入散列表
+            parents.insert(p);
+            p = parent_map[p];
+        }
+        while (q != NULL) { //q的祖先，一旦出现就是公共父节点
+            if (parents.find(q) != parents.end()) //这样写就是若存在的意思
+                return q;
+            q = parent_map[q];
+        }
+        return NULL;
+    }
+};
+```  
