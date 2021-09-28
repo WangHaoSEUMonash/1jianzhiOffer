@@ -428,3 +428,17 @@ class Solution:
 **输出**: 1 
 
 **解释**: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+
+# 树
+## 68-I. [二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
+给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+***示例***
+
+![avatar](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/binarysearchtree_improved.png)
+
+**输入**: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+
+**输出**: 6
+
+**解释**: 节点 2 和节点 8 的最近公共祖先是 6。
