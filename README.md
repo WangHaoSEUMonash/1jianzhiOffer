@@ -1002,3 +1002,73 @@ minStack.pop();
 minStack.top();      --> 返回 0.
 minStack.min();   --> 返回 -2.
   ``` 
+ ``` 
+class MinStack {
+public:
+    /** initialize your data structure here. */
+    MinStack() {
+
+    }
+    
+    stack<int> S1, minS2;
+
+    void push(int x) {
+        S1.push(x);
+        if(minS2.empty()) minS2.push(x);
+        else if(minS2.top() > x && !minS2.empty()) minS2.push(x);
+        else minS2.push(minS2.top());
+    }
+    
+    void pop() {
+        S1.pop();
+        minS2.pop();
+    }
+    
+    int top() {
+        return S1.top();
+    }
+    
+    int min() {
+        return minS2.top();
+    }
+};
+ ``` 
+  ``` 
+ class MinStack(object):
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.A, self.B = [],[]
+
+    def push(self, x):
+        """
+        :type x: int
+        :rtype: None
+        """
+        self.A.append(x)
+        if not self.B or self.B[-1] > x:
+            self.B.append(x)
+        elif self.B[-1] <= x:
+            self.B.append(self.B[-1])
+
+    def pop(self):
+        """
+        :rtype: None
+        """
+        self.B.pop()
+        self.A.pop()
+
+    def top(self):
+        """
+        :rtype: int
+        """
+        return self.A[-1]
+
+    def min(self):
+        """
+        :rtype: int
+        """
+        return self.B[-1]
+  ``` 
