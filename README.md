@@ -835,3 +835,31 @@ class Solution:
    15   7
 ```  
 返回true
+
+```  
+class Solution {
+public:
+    int height(TreeNode* root) {
+        if (root == NULL) return 0;
+        else
+            return max(height(root->left), height(root->right)) + 1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if (root == NULL) return true;
+        else
+            return abs(height(root->left)-height(root->right))<=1 && isBalanced(root->left) && isBalanced(root->right);
+    }
+};
+```  
+```  
+class Solution:
+    def isBalanced(self, root: TreeNode) -> bool:
+        def height(root: TreeNode) -> int:
+            if not root:
+                return 0
+            return max(height(root.left), height(root.right)) + 1
+        if not root:
+            return True
+        else:
+            return abs(height(root.left)-height(root.right))<=1 and self.isBalanced(root.left) and self.isBalanced(root.right)
+```  
