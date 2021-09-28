@@ -1131,8 +1131,10 @@ public:
   ``` 
   
 **输入**: [1,6,3,2,5]
+
 **输出**: false
 
+  ``` 
 class Solution {
 public:
     bool verifyPostorder(vector<int>& postorder) {
@@ -1149,3 +1151,4 @@ public:
         return true;
     }
 };
+  ``` 
