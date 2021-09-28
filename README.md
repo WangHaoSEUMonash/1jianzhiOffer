@@ -519,14 +519,31 @@ public:
 
 ***示例***
 
-![avatar](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/15/binarytree.png)
-
 **输入**: root = [4,2,7,1,3,6,9]
 
-     4
-   /   \
-  2     7
- / \   / \
-1   3 6   9
-
 **输出**: [4,7,2,9,6,3,1]
+
+递归交换左右子树
+
+```  
+class Solution {
+public:
+    TreeNode* mirrorTree(TreeNode* root) {
+        if(root == NULL) return NULL;
+        TreeNode *temp = root->left;
+        root->left = mirrorTree(root->right);
+        root->right = mirrorTree(temp);
+        return root;
+    }
+};
+```  
+```  
+class Solution:
+    def mirrorTree(self, root: TreeNode) -> TreeNode:
+        if not root:
+            return root
+        temp = root.left
+        root.left = self.mirrorTree(root.right)
+        root.right = self.mirrorTree(temp)
+        return root
+```  
