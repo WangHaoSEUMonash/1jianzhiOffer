@@ -928,3 +928,62 @@ class Solution:
 **输入**: ["CQueue","appendTail","deleteHead","deleteHead"]，[[],[3],[],[]]
 
 **输出**: [null,null,3,-1]
+``` 
+class CQueue {
+public:
+
+    stack<int> s1;
+    stack<int> s2;
+    CQueue() {
+
+    }
+    
+    void appendTail(int value) {
+        s1.push(value);
+    }
+    
+    int deleteHead() {
+        if(!s2.empty()){
+            int temp = s2.top();
+            s2.pop();
+            return temp;
+        } 
+        if(s1.empty()) return -1;
+        while(!s1.empty()){
+            int temp = s1.top();
+            s1.pop();   
+            s2.push(temp);  
+        }
+    int temp = s2.top();
+    s2.pop();
+    return temp;
+    }
+};
+``` 
+``` 
+class CQueue(object):
+
+    def __init__(self):
+        self.s1, self.s2 = [],[]
+
+    def appendTail(self, value):
+        """
+        :type value: int
+        :rtype: None
+        """
+        self.s1.append(value)
+
+
+    def deleteHead(self):
+        """
+        :rtype: int
+        """
+        if self.s2:
+            return self.s2.pop()
+        if not self.s1:
+            return -1
+
+        while self.s1:
+            self.s2.append(self.s1.pop())
+        return self.s2.pop()
+  ``` 
