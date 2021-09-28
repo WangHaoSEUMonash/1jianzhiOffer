@@ -599,3 +599,37 @@ class Solution:
 **输入**: root = [3,9,20,null,null,15,7],
 
 **输出**: 
+
+[
+
+  [3],
+  
+  [9,20],
+  
+  [15,7]
+  
+]
+
+```  
+class Solution {
+public:
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        queue<TreeNode*> q;
+        vector<vector<int> > res; 
+        if (root == NULL) return res;
+        q.push(root);
+        while (!q.empty()) {
+            vector<int> tmp;
+            for (int i = q.size(); i > 0; i--) {
+                TreeNode* node = q.front();
+                q.pop();
+                tmp.push_back(node->val);
+                if (node->left != NULL) q.push(node->left);
+                if (node->right != NULL) q.push(node->right);
+            }
+            res.push_back(tmp);
+        }
+        return res;
+    }
+};
+```  
