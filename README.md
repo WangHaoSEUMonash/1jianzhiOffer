@@ -973,7 +973,6 @@ class CQueue(object):
         """
         self.s1.append(value)
 
-
     def deleteHead(self):
         """
         :rtype: int
