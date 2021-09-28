@@ -882,7 +882,7 @@ class Solution:
 **输出**: 4
 
 ```  
-反向深度优先遍历（右子树）
+反向深度优先遍历（反向中序遍历（右中左））
 
 class Solution {
 public:
