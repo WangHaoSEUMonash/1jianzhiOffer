@@ -1151,8 +1151,9 @@ public:
         return true;
     }
 };
-  ``` 
-    ``` 
+``` 
+
+``` 
 class Solution:
     def verifyPostorder(self, postorder: List[int]) -> bool:
         stack, root = [], float("+inf")
@@ -1162,4 +1163,4 @@ class Solution:
                 root = stack.pop()
             stack.append(postorder[i])
         return True
-  ``` 
+``` 
