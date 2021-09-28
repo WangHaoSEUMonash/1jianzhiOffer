@@ -776,3 +776,45 @@ class Solution:
    15   7
 ```
 返回它的最大深度 3 。
+
+```  
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        list<TreeNode> queue;
+        list<TreeNode> temp;
+        if (root == NULL) return 0;
+        int deep = 0;
+        queue.push_back(*root);
+        while (!queue.empty()){
+            for (TreeNode node: queue){
+                if (node.left != NULL) temp.push_back(*(node.left));
+                if (node.right != NULL) temp.push_back(*(node.right));
+            }
+            queue = temp;
+            temp.clear();
+            deep ++;
+        }
+        return deep;
+    }
+};
+```  
+```  
+class Solution:
+    def maxDepth(self, root: TreeNode) -> int:
+        if not root:
+            return 0
+        queue, temp = [], []
+        queue.append(root)
+        deep = 0
+        while queue:
+            for node in queue:
+                if node.left:
+                    temp.append(node.left)
+                if node.right:
+                    temp.append(node.right)
+            queue = temp
+            temp = []
+            deep += 1
+        return deep
+```  
