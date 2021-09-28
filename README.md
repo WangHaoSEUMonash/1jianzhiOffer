@@ -1086,3 +1086,34 @@ public:
 **解释**：我们可以按以下顺序执行：
 
 push(1), push(2), push(3), push(4), pop() -> 4, push(5), pop() -> 5, pop() -> 3, pop() -> 2, pop() -> 1
+
+  ``` 
+class Solution {
+public:
+    bool validateStackSequences(vector<int>& pushed, vector<int>& popped) {
+        stack<int> s;
+        int i=0, j;
+        for(j = 0; j < pushed.size(); j++)
+        {
+            s.push(pushed[j]);
+            while(!s.empty() && s.top() == popped[i]){
+                s.pop();
+                i++;
+            }
+        }
+        return s.empty();
+    }
+};
+ ```  
+ ``` 
+ class Solution:
+    def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+        stack = []
+        i = 0
+        for num in pushed:
+            stack.append(num)
+            while stack and stack[-1] == popped[i]:
+                stack.pop()
+                i += 1
+        return not stack 
+ ``` 
