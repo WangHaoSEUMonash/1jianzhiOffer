@@ -680,3 +680,44 @@ class Solution:
    [5,8,4,5]
    
 ]
+**先序遍历**
+
+```  
+class Solution {
+public:
+    vector<vector<int>> res;
+    vector<int> path;
+    vector<vector<int>> pathSum(TreeNode* root, int target) {
+        recur(root, target);
+        return res;
+    }
+
+    void recur(TreeNode* root, int target1) {
+        if (root == NULL) return;
+        path.push_back(root->val);
+        target1 -= root->val;
+        if (target1 == 0 && root->left == NULL && root->right == NULL)
+            res.push_back(path);
+        recur(root->left, target1);
+        recur(root->right, target1);
+        path.pop_back();
+    }
+};
+```  
+```  
+class Solution:
+    def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
+        res, path = [], [] #path保存所有可能的路径
+        def recur(root, target1):
+            if not root: return
+            path.append(root.val)
+            target1 -= root.val
+            if target1 == 0 and not root.left and not root.right:
+                res.append(list(path))
+            recur(root.left, target1)
+            recur(root.right, target1)
+            path.pop()
+        
+        recur(root, target)
+        return res
+```  
