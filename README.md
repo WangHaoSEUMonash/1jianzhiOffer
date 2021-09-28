@@ -442,3 +442,30 @@ class Solution:
 **输出**: 6
 
 **解释**: 节点 2 和节点 8 的最近公共祖先是 6。
+
+```  
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        while (true) {
+            if (root->val > p->val && root->val > q->val)
+                root = root->left;
+            else if (root->val < p->val && root->val < q->val)
+                root = root->right;
+            else 
+                return root;
+        }
+    }
+};
+```  
+```  
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while (True):
+            if root.val < p.val and root.val < q.val:
+                root = root.right
+            elif root.val > p.val and root.val > q.val:
+                root = root.left
+            else:
+                return root
+```  
