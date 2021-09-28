@@ -863,3 +863,20 @@ class Solution:
         else:
             return abs(height(root.left)-height(root.right))<=1 and self.isBalanced(root.left) and self.isBalanced(root.right)
 ```  
+
+## 54. [二叉搜索树的第k大节点](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+
+给定一棵二叉搜索树，请找出其中第k大的节点。
+
+***示例***
+
+**输入**: root =  [3,1,4,null,2], k = 1
+
+```  
+   3
+  / \
+ 1   4
+  \
+   2
+```  
+**输出**: 4
