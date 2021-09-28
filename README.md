@@ -694,7 +694,7 @@ class Solution:
 ***示例***
 
 **输入**: 给定如下二叉树，以及目标和 target = 22，
-
+```
          5
 
         / \
@@ -708,7 +708,7 @@ class Solution:
     /  \    / \
 
    7    2  5   1
-
+```
 
 **输出**: 
 
@@ -761,7 +761,7 @@ class Solution:
         recur(root, target)
         return res
 ```  
-## 55-I. 二叉树的深度
+## 55-I. [二叉树的深度](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
 
 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。
 
