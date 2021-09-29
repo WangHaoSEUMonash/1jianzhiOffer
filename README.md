@@ -1203,3 +1203,47 @@ class Solution:
                 votes += -1
         return x
 ``` 
+## 5. [替换空格](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
+
+请实现一个函数，把字符串 s 中的每个空格替换成"%20"。
+
+***示例***
+
+**输入**：s = "We are happy."
+
+**输出**："We%20are%20happy."
+
+``` 
+class Solution {
+public:
+    string replaceSpace(string s) {
+        int count = 0, len = s.size();
+        for (char c : s) 
+            if (c == ' ') count++; // 统计空格数量
+        s.resize(len + 2 * count);  // 修改 s 长度
+        // 倒序遍历修改
+        for(int i = len - 1, j = s.size() - 1; i < j; i--, j--) {
+            if (s[i] != ' ')
+                s[j] = s[i];
+            else {
+                s[j - 2] = '%';
+                s[j - 1] = '2';
+                s[j] = '0';
+                j -= 2;
+            }
+        }
+        return s;
+    }
+};
+``` 
+``` 
+class Solution:
+    def replaceSpace(self, s: str) -> str:
+        res = []
+        for c in s:
+            if c == ' ': 
+                res.append("%20")
+            else: 
+                res.append(c)
+        return "" .join(res)
+``` 
