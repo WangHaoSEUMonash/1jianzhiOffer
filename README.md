@@ -1319,3 +1319,43 @@ class Solution(object):
 **输入**：[3,4,5,1,2]
 
 **输出**：1
+
+类似于二分查找
+
+``` 
+class Solution {
+public:
+    int minArray(vector<int>& numbers) {
+        int low = 0;
+        int high = numbers.size() - 1;
+        while (low < high) {
+            int pivot = low + (high - low) / 2;
+            if (numbers[pivot] < numbers[high]) {
+                high = pivot;
+            }
+            else if (numbers[pivot] > numbers[high]) {
+                low = pivot + 1;
+            }
+            else {
+                high -= 1;
+            }
+        }
+        return numbers[low];
+    }
+};
+``` 
+
+``` 
+class Solution:
+    def minArray(self, numbers: List[int]) -> int:
+        low, high = 0, len(numbers) - 1
+        while low < high:
+            pivot = low + (high - low) // 2
+            if numbers[pivot] < numbers[high]:
+                high = pivot 
+            elif numbers[pivot] > numbers[high]:
+                low = pivot + 1
+            else:
+                high -= 1
+        return numbers[low]
+``` 
