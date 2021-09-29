@@ -1345,6 +1345,36 @@ class Solution:
 
 # 数组与字符串
 
+## 17. [打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
+
+输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
+
+***示例***
+
+**输入**：n = 1
+
+**输出**：[1,2,3,4,5,6,7,8,9]
+
+``` 
+class Solution {
+public:
+    vector<int> printNumbers(int n) {
+        vector<int> ans;
+        for (int i = 1; i < pow(10, n); i++)
+            ans.push_back(i);
+        return ans;
+    }
+};
+``` 
+``` 
+class Solution:
+    def printNumbers(self, n: int) -> List[int]:
+        ans = []
+        for i in range(1, 10**n):
+            ans.append(i);
+        return ans
+``` 
+
 ## 39. [数组中出现次数超过一半的数字](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/submissions/)
 
 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。你可以假设数组是非空的，并且给定的数组总是存在多数元素。
