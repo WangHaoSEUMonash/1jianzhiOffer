@@ -1267,6 +1267,24 @@ class Solution:
 ]
 ``` 
 
-给定 target = 5，返回 true。
+给定 target = 5，返回 true。给定 target = 20，返回 false。
 
-给定 target = 20，返回 false。
+从左下角或者右上角开始查找
+
+``` 
+class Solution {
+public:
+    bool findNumberIn2DArray(vector<vector<int>>& matrix, int target) {
+        int i = matrix.size() - 1, j = 0;
+        while(i >= 0 && j < matrix[0].size())
+        {
+            if(matrix[i][j] > target)
+                i--;
+            else if(matrix[i][j] < target)
+                j++;
+            else return true;
+        }
+        return false;
+    }
+};
+``` 
