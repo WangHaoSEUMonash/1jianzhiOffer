@@ -10,6 +10,31 @@
 
 **输出**: [2,3,1]
 
+```
+class Solution {
+public:
+    vector<int> reversePrint(ListNode* head) {
+        vector<int> result;
+        ListNode *p = head;
+        while(p != NULL){
+            result.push_back(p->val);
+            p = p -> next;
+        }
+        //rbegin就是逆序
+        return vector<int>(result.rbegin(), result.rend());
+    }
+};
+```
+```
+class Solution:
+    def reversePrint(self, head: ListNode) -> List[int]:
+        result = []
+        while head:
+            result.append(head.val)
+            head = head.next
+        return result[::-1]
+```
+
 ## 18. [删除链表的节点](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
 给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。返回删除后的链表的头节点
 
