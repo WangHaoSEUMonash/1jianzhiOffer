@@ -559,6 +559,59 @@ class Solution:
 **输入**: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 **输出**: [3,9,20,null,null,15,7]
 
+## 28. 对称的二叉树
+
+请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
+
+例如，二叉树 [1,2,2,3,4,4,3] 是对称的。
+
+```  
+    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+```  
+
+***示例***
+
+**输入**: root = [1,2,2,3,4,4,3]
+
+**输出**: true
+
+```  
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if(root == NULL) return true;
+        return isSymmetricalCor(root -> left, root -> right);
+    }
+
+private:
+    bool isSymmetricalCor(TreeNode *L, TreeNode *R){
+        if(L == NULL && R == NULL) return true;
+        if(L == NULL || R == NULL) return false;
+        if(L -> val != R -> val) return false;
+        return isSymmetricalCor(L -> left, R -> right) && isSymmetricalCor(L -> right, R -> left);
+    }
+};
+```  
+```  
+class Solution:
+    def isSymmetricalCor(self, L: TreeNode, R: TreeNode) -> bool:
+        if not L and not R:
+            return true
+        if not L or not R:
+            return false
+        if L.val != R.val:
+            return self.isSymmetricalCor(L.left, R.right) and self.isSymmetricalCor(L.right, R.left)
+
+    def isSymmetric(self, root: TreeNode) -> bool:
+        if not root:
+            return true
+        return self.isSymmetricalCor(root.left, root.right)
+```  
+
 
 ## 68-I. [二叉搜索树的最近公共祖先](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
 给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
