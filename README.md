@@ -559,7 +559,7 @@ class Solution:
 **输入**: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 **输出**: [3,9,20,null,null,15,7]
 
-## 28. 对称的二叉树
+## 28. [对称的二叉树](https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/)
 
 请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。
 
