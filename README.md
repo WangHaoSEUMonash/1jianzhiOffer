@@ -1174,6 +1174,7 @@ class Solution:
 ***示例***
 
 **输入**：[1, 2, 3, 2, 2, 2, 5, 4, 2]
+
 **输出**：2
 
 ``` 
@@ -1188,4 +1189,17 @@ public:
         return x;
     }
 };
+``` 
+``` 
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        votes = 0
+        for num in nums:
+            if votes == 0:
+                x = num
+            if num == x:
+                votes += 1
+            else:
+                votes += -1
+        return x
 ``` 
