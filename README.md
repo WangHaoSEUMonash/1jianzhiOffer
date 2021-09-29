@@ -347,6 +347,35 @@ class Solution:
 
 **解释**: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36
 
+   ```
+public:
+    int cuttingRope(int n) {
+        if (n < 2) return 0;
+        if (n == 2) return 1;
+        if (n == 3) return 2;
+
+        int *products = new int[n + 1]; //存放每个长度的最优解
+        products[0] = 0;
+        products[1] = 1;
+        products[2] = 2;
+        products[3] = 3;
+
+        int max = 0;
+        for (int i = 4; i <= n; i++) {
+            max = 0;
+            for (int j = 1; j <= i/2; j++) {
+                int product = products[j] * products[i - j];
+                if (max < product)
+                    max = product;
+                products[i] = max;
+            }
+        }
+        max = products[n];
+        return max;
+    }
+};
+   ```
+
 ## 42. [连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
 输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。
 
