@@ -106,7 +106,7 @@ public:
     }
     void siftDown(vector<int>& nums,int start,int end)
     {
-        int j=2*start+1;
+        int j=2*start+1; 
         while(j<=end)
         {
             if(j<end && nums[j]<nums[j+1])++j;
