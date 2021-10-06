@@ -1,6 +1,7 @@
 # 《数据结构与算法》
 ## 排序
-912. [排序数组](https://leetcode-cn.com/problems/sort-an-array/)
+[912. 排序数组](https://leetcode-cn.com/problems/sort-an-array/)
+
 给你一个整数数组 nums，请你将该数组升序排列。
 
 ***示例***
@@ -188,6 +189,22 @@ public:
 
 ```
 
+## 图
+
+### 迪杰斯特拉算法(Dijkstra)
+
+[787. K站中转最便宜的航班](https://leetcode-cn.com/problems/cheapest-flights-within-k-stops/)
+
+有 n 个城市通过一些航班连接。给你一个数组 flights ，其中 flights[i] = [fromi, toi, pricei] ，表示该航班都从城市 fromi 开始，以价格 pricei 抵达 toi。
+
+现在给定所有的城市和航班，以及出发城市 src 和目的地 dst，你的任务是找到出一条最多经过 k 站中转的路线，使得从 src 到 dst 的 价格最便宜 ，并返回该价格。 如果不存在这样的路线，则输出 -1。
+
+***示例***
+
+**输入**: head = [1,3,2]
+
+**输出**: [2,3,1]
+
 # 链表
 
 ## 6. [从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
@@ -196,9 +213,13 @@ public:
 
 ***示例***
 
-**输入**: head = [1,3,2]
+**输入**: 
 
-**输出**: [2,3,1]
+n = 3, edges = [[0,1,100],[1,2,100],[0,2,500]]
+
+src = 0, dst = 2, k = 1
+
+**输出**: 200
 
 ```
 class Solution {
