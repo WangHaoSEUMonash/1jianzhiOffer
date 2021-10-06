@@ -119,6 +119,74 @@ public:
     }
 };
 ```
+### 冒泡排序
+```
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+        {
+            bool flag=false;
+            for(int j=n-1;j>i;j--)
+            {
+                if(nums[j]<nums[j-1])
+                {
+                    swap(nums[j],nums[j-1]);
+                    flag=true;
+                }
+            }
+            if(flag==false) return nums;
+        }
+        return nums;
+    }
+};
+```
+### 插入排序
+```
+class Solution{
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n=nums.size();
+        for(int i=1;i<n;i++)
+        {
+            int cur=nums[i];
+            int index=i-1;
+            while(index>=0 && cur<nums[index])
+            {
+                nums[index+1]=nums[index];
+                index--;
+            }
+            nums[index+1]=cur;
+        }
+        return nums;
+    }
+};
+```
+### 选择排序
+```
+class Solution{
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n=nums.size();
+        if(n<=1)return nums;
+        for(int i=0;i<n;i++)
+        {
+            int loc=i;
+            for(int j=i;j<n;j++)
+            {
+                if(nums[j]<nums[loc])
+                {
+                    loc=j;
+                }
+            }
+            swap(nums[loc],nums[i]);
+        }
+        return nums;
+    }
+};
+
+```
 
 # 链表
 
