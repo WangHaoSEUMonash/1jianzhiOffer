@@ -2079,6 +2079,73 @@ public:
     }
 };
 ``` 
+
+## 56-I. [数组中数字出现的次数](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
+
+***示例***
+
+**输入**：nums = [4,1,4,6]
+
+**输出**：[1,6] 或 [6,1]
+
+``` 
+class Solution {
+public:
+    vector<int> singleNumbers(vector<int>& nums) {
+        int x = 0, y = 0, n = 0, m = 1;
+        for(int num : nums)         // 1. 遍历异或
+            n ^= num;
+        while((n & m) == 0)         // 2. 循环左移，计算 m
+            m <<= 1;
+        for(int num : nums) {       // 3. 遍历 nums 分组
+            if(num & m) x ^= num;   // 4. 当 num & m != 0
+            else y ^= num;          // 4. 当 num & m == 0
+        }
+        return vector<int> {x, y};  // 5. 返回出现一次的数字
+    }
+};
+
+``` 
+
+## 56-II. [数组中数字出现的次数II](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+
+在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了三次。请找出那个只出现一次的数字。
+
+***示例***
+
+**输入**：nums = [3,4,3,3]
+
+**输出**：4
+
+因为数组中只有一个数出现了一次，那么各个二进制位为1的个数 % 3 便能求出这个数哪些位置为1， 最后再将其转换为十进制
+
+```
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int bits[32] = {0};
+        for(int i = 0; i < nums.size(); i++){
+            int j = 0;
+            //得到各个二进制位为1的有多少个
+            while(nums[i]){
+                bits[j] += nums[i] % 2;
+                nums[i] /= 2;
+                j++;
+            }
+        }
+        int ans = 0;
+        for(int i = 0; i < 32; i++){
+            //利用%3 来求得对应位置上有没有1 有的话乘对应的 2 的i次方
+            ans += (1 << i) *(bits[i] % 3);
+        }
+        return ans;
+    }
+};
+
+```
+
 # DFS, BFS
 ## 200. [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
 
