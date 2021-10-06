@@ -193,7 +193,7 @@ public:
 
 ### 迪杰斯特拉算法(Dijkstra)
 
-[743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
+#### [743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
 
 有 n 个网络节点，标记为 1 到 n。
 
