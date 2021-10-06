@@ -1,3 +1,47 @@
+# 基本排序
+
+## 912. [排序数组](https://leetcode-cn.com/problems/sort-an-array/)
+给你一个整数数组 nums，请你将该数组升序排列。
+
+***示例***
+
+**输入**: nums = [5,2,3,1]
+
+**输出**: [1,2,3,5]
+
+### 快速排序
+
+```
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n = nums.size();
+        quickSort(nums, 0, n-1);
+        return nums;
+    }
+
+    void quickSort(vector<int>& nums, int start, int end) {
+        if (start < end) {
+            int mid = partition(nums, start, end);
+            quickSort(nums, start, mid - 1);
+            quickSort(nums, mid + 1, end);
+        }
+    }
+
+    int partition(vector<int>& nums, int start, int end) {
+        int current = nums[start];
+        while (start < end) {
+            while (start < end && nums[end] >= current) --end;
+            nums[start] = nums[end];
+            while (start < end && nums[start] <= current) ++start;
+            nums[end] = nums[start];
+        }
+        nums[start] = current;
+        return start;
+    }
+};
+```
+
 # 链表
 
 ## 6. [从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
