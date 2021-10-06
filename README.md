@@ -325,22 +325,45 @@ public:
 };
 ```
 
+# 动态规划————最长公共子序列
 
-## 416. [分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+## 1143. [最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
 
-给你一个 只包含正整数的**非空**数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。
+
+一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
+
 
 ***示例***
 
-**输入**: nums = [1,5,11,5]
+**输入**: text1 = "abcde", text2 = "ace" 
 
-**输出**: true
+**输出**: 3
 
-**解释**: 数组可以分割成 [1, 5, 5] 和 [11] 。
+**解释**: 最长公共子序列是 "ace" ，它的长度为 3 
+```
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int m = text1.length(), n = text2.length();
+        vector<vector<int>> dp(m + 1, vector<int>(n + 1));
+        for (int i = 1; i <= m; i++) {
+            char c1 = text1.at(i - 1);
+            for (int j = 1; j <= n; j++) {
+                char c2 = text2.at(j - 1);
+                if (c1 == c2) {
+                    dp[i][j] = dp[i - 1][j - 1] + 1;
+                } else {
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+        return dp[m][n];
+    }
+};
 
 ```
 
-```
 
 # 链表
 
