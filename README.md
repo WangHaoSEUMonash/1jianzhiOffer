@@ -42,6 +42,46 @@ public:
 };
 ```
 
+### 归并排序 ***时间O(nlogn)，空间O(n)，稳定***
+```
+class Solution{
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n=nums.size();
+        if(n<=1)return nums;
+        vector<int> temp(n);
+        mergeSort(nums,0,n-1,temp);
+        return nums;
+    }
+    void mergeSort(vector<int>& nums,int first,int last,vector<int>& temp)
+    {
+        if(first<last)
+        {
+            int mid=(first+last)/2;
+            mergeSort(nums,first,mid,temp);
+            mergeSort(nums,mid+1,last,temp);
+            merge(nums,temp,first,mid,last);
+        }
+    }
+    void merge(vector<int>& nums,vector<int>& temp,int first,int mid,int last)
+    {
+        int index1=first,index2=mid+1;
+        int t=first;
+        while(index1<=mid && index2<=last)
+        {
+            if(nums[index1]<=nums[index2])temp[t++]=nums[index1++];
+            else temp[t++]=nums[index2++];
+        }
+        while(index1<=mid) temp[t++]=nums[index1++];
+        while(index2<=last)temp[t++]=nums[index2++];
+        for(t=first;t<=last;++t)
+        {
+            nums[t]=temp[t];
+        }
+    }
+};
+```
+
 # 链表
 
 ## 6. [从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
