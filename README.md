@@ -273,7 +273,74 @@ public:
     }
 };
 ```
+# 动态规划————01背包问题
 
+## 377. [组合总数](https://leetcode-cn.com/problems/combination-sum-iv/)
+
+给你一个由**不同**整数组成的数组 nums ，和一个目标整数 target 。请你从 nums 中找出并返回总和为 target 的元素组合的个数。
+
+题目数据保证答案符合 32 位整数范围。
+
+
+***示例***
+
+**输入**: nums = [1,2,3], target = 4
+
+**输出**: 7
+
+**解释**: 
+
+所有可能的组合为：
+
+(1, 1, 1, 1)
+
+(1, 1, 2)
+
+(1, 2, 1)
+
+(1, 3)
+
+(2, 1, 1)
+
+(2, 2)
+
+(3, 1)
+
+请注意，顺序不同的序列被视作不同的组合。
+
+```
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        vector<int> dp(target + 1);
+        dp[0] = 1;
+        for (int i = 1; i <= target; i++) {
+            for (int& num : nums) {
+                if (num <= i && dp[i - num] < INT_MAX - dp[i])
+                    dp[i] += dp[i - num];
+            } 
+        }
+        return dp[target];
+    }
+};
+```
+
+
+## 416. [分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+
+给你一个 只包含正整数的**非空**数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+***示例***
+
+**输入**: nums = [1,5,11,5]
+
+**输出**: true
+
+**解释**: 数组可以分割成 [1, 5, 5] 和 [11] 。
+
+```
+
+```
 
 # 链表
 
