@@ -245,6 +245,8 @@ public:
 
 ## 图
 
+### 最小生成树：普利姆(Prim)算法，克鲁斯卡尔(Kruskal)算法
+
 #### [1135. 最低成本连通所有城市](https://leetcode-cn.com/problems/connecting-cities-with-minimum-cost/)
 
 想象一下你是个城市基建规划者，地图上有 N 座城市，它们按以 1 到 N 的次序编号。
@@ -261,9 +263,6 @@ public:
 
 **解释**: 选出任意 2 条边都可以连接所有城市，我们从中选取成本最小的 2 条。
 
-### 最小生成树：普利姆(Prim)算法
-
-### 最小生成树：克鲁斯卡尔(Kruskal)算法
 
 ### 最短路径：迪杰斯特拉(Dijkstra)算法
 
