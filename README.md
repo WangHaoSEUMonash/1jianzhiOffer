@@ -82,6 +82,44 @@ public:
 };
 ```
 
+### 堆排序 ***时间O(nlogn)，空间O(1)，不稳定***
+```
+class Solution{
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        int n=nums.size();
+        if(n<=1)return nums;
+        return heapSort(nums,n);
+    }
+    vector<int>heapSort(vector<int>& nums,int n)
+    {
+        for(int i=n/2-1;i>=0;--i)
+        siftDown(nums,i,n-1);
+        for(int i=n-1;i>=1;--i)
+        {
+            swap(nums[0],nums[i]);
+            --n;
+            siftDown(nums,0,n-1);
+        }
+        return nums;
+    }
+    void siftDown(vector<int>& nums,int start,int end)
+    {
+        int j=2*start+1;
+        while(j<=end)
+        {
+            if(j<end && nums[j]<nums[j+1])++j;
+            if(nums[start]>=nums[j])break;
+            else
+            {
+                swap(nums[start],nums[j]);
+                start=j;j=2*j+1;
+            }
+        }
+    }
+};
+```
+
 # 链表
 
 ## 6. [从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
