@@ -191,7 +191,7 @@ public:
 
 ## 图
 
-### 迪杰斯特拉算法(Dijkstra)
+### 迪杰斯特拉(Dijkstra)算法
 
 #### [743. 网络延迟时间](https://leetcode-cn.com/problems/network-delay-time/)
 
@@ -208,6 +208,52 @@ public:
 times = [[2,1,1],[2,3,1],[3,4,1]], n = 4, k = 2
 
 **输出**: 2
+```
+#define MAXVALUE 0x3f3f3f3f
+
+class Solution {
+public:
+    vector<unordered_map<int, int>> mp;
+    int networkDelayTime(vector<vector<int>>& times, int n, int k) {
+        // 建图 - 邻接表
+        mp.resize(n + 1);
+        for (auto& edg : times) {
+            mp[edg[0]][edg[1]] = edg[2];
+        }
+        // 记录结点最早收到信号的时间
+        vector<int> r(n + 1, MAXVALUE);
+        r[k] = 0;
+
+        // 记录已经找到最短路的结点
+        unordered_set<int> s;
+
+        while (true) {
+            // 待查集中查找最近结点
+            int cur = -1, tim = MAXVALUE;
+            for (int i = 1; i <= n; ++i) {
+                if (r[i] < tim && s.find(i) == s.end()) {
+                    cur = i;
+                    tim = r[i];
+                }
+            }
+
+            if (cur == -1) break;
+
+            // 将最近结点加入已查集合并更新
+            s.emplace(cur);
+            for (auto& edg : mp[cur]) {
+                r[edg.first] = min(r[edg.first], edg.second + tim);
+            }
+        }
+
+        int minT = -1;
+        for (int i = 1; i <= n; ++i)
+            minT = max(minT, r[i]);
+        return minT == MAXVALUE ? -1 : minT;
+    }
+};
+```
+
 
 # 链表
 
