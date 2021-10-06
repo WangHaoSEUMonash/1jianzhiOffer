@@ -2039,6 +2039,46 @@ class Solution:
         return numbers[low]
 ``` 
 
+# 位运算
+## 53-II. [0~n-1中缺失的数字](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
+
+一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。
+
+***示例***
+
+**输入**：[0,1,3]
+
+**输出**：2
+
+位运算：相同两个数异或为0，所有数与0异或结果不变，所以将数组里面所有的数异或，然后再将结果异或0~n-1之间的所有的数，最后只有一个数只出现了一次，就是最后的结果。
+``` 
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int ans = 0;
+        for(int i = 0; i < nums.size(); i ++)
+            ans ^= nums[i];
+        for(int i = 0; i <= nums.size(); i ++)
+            ans ^= i;
+        return ans;
+    }   
+};
+``` 
+二分查找
+``` 
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int i = 0, j = nums.size() - 1;
+        while(i <= j){
+            int m = (i + j) / 2;
+            if(nums[m] == m) i = m + 1;
+            else j = m -1;
+        }
+        return i;
+    }
+};
+``` 
 # DFS, BFS
 ## 200. [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
 
