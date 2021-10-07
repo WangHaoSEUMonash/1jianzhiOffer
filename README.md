@@ -328,7 +328,7 @@ public:
 ```
 # 动态规划————01背包问题
 
-## [SEU-1019](http://47.99.179.148/problem.php?id=1019)
+## [SEU-1019](http://47.99.179.148/problem.php?id=1019)可以不装满
 
 有一个容量为C(C<=100)的背包以及N(N<=500)颗宝石，第i颗宝石大小为si，价值为vi。由于条件限制，你手边只有这个背包可作为你搬运宝石的唯一工具。现在你想知道在最多可以带走多大价值的宝石。
 
@@ -389,6 +389,76 @@ int main()
     {
         if(j == M - 1) printf("%d", ans[j]);
         else printf("%d\n", ans[j]);
+    }
+    return 0;
+}
+```
+
+## [SEU-1018](http://47.99.179.148/problem.php?id=1018)必须装满
+
+有一个容量为C(C<=100)的奇怪背包，这个背包可以被带走仅当它恰好被装满。现在你手边有N(N<=500)颗宝石，第i颗宝石大小为si，价值为vi。由于条件限制，你手边只有这个奇怪的背包可作为你搬运宝石的唯一工具。现在你想知道在这样的条件下你最多可以带走多大利润的宝石。
+
+***示例***
+
+**输入**: 第一行输入M(M<=10)表示有M组数据。每组数据第一行输入N、C，表示宝石数目以及背包容量；接下来一行输入N组(si,vi), si和vi均为整数，表示每颗宝石的大小和价值。
+
+Sample Input
+
+3
+
+3 10
+
+1 3 2 5 7 2
+
+3 10
+
+1 3 2 5 6 2
+
+5 10
+
+5 6 5 7 2 8 8 1 5 9
+
+**输出**: 输出M行正整数，第i行表示第i组数据可以带走的宝石的最大代价, 背包可被带走仅当它恰好被装满。
+
+10
+
+0
+
+17
+```
+#include <iostream>
+#include <string.h>
+using namespace std;
+int s[501],v[501],dp[101];
+
+int main()
+{
+    int M;
+    cin>>M;
+    int inf = 9999;
+    for(int i=0; i<M; i++){
+        int N,C;
+        cin>>N>>C;
+        for(int i=1; i<=N; i++)
+            cin>>s[i]>>v[i];
+        dp[0] = 0;
+        for(int i = 1; i <= C; i++)
+            dp[i] = -inf;
+        for(int i=1; i<=N; i++){
+            for(int j=C; j>=1; j--){
+                if(j >= s[i])
+                    dp[j] = max(dp[j],dp[j-s[i]]+v[i]);
+                if(dp[j] < 0)
+                    dp[j] = -inf;
+            }
+        }
+        if (dp[C] > 0)
+            cout<<dp[C]<<endl;
+        else
+            cout<<0<<endl;
+        memset(dp,0,sizeof(dp));
+        memset(s,0,sizeof(s));
+        memset(v,0,sizeof(v));
     }
     return 0;
 }
