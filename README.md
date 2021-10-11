@@ -1968,6 +1968,39 @@ class Solution:
 
 # 数组与字符串
 
+## 62. [圆圈中最后剩下的数字（约瑟夫环）](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
+
+0,1,···,n-1这n个数字排成一个圆圈，从数字0开始，每次从这个圆圈里删除第m个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。
+
+例如，0、1、2、3、4这5个数字组成一个圆圈，从数字0开始每次删除第3个数字，则删除的前4个数字依次是2、0、4、1，因此最后剩下的数字是3。
+
+***示例***
+
+**输入**：n = 5, m = 3
+
+**输出**：3
+
+``` 
+class Solution {
+public:
+    int lastRemaining(int n, int m) {
+        int f = 0;
+        for (int i = 2; i != n + 1; i++)
+            f = (m + f) % i;
+        return f;
+    }
+};
+``` 
+
+``` 
+class Solution:
+    def lastRemaining(self, n: int, m: int) -> int:
+        f = 0
+        for i in range(2, n+1):
+            f = (m + f) % i;
+        return f
+``` 
+
 ## 17. [打印从1到最大的n位数](https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/)
 
 输入数字 n，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。
