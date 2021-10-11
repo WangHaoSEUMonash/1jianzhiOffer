@@ -683,6 +683,46 @@ public:
 };
  ```
  ```
+% 完整程序的反转链表
+#include <iostream>
+
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode *next;
+};
+
+ListNode* reverseList(ListNode* head) {
+    if (head == NULL) return head;
+    ListNode *cur = NULL, *pre = head, *tmp = head->next;
+    while (tmp) {
+        pre->next = cur;
+        cur = pre;
+        pre = tmp;
+        tmp = tmp->next;
+    }
+    pre->next = cur;
+    return pre;
+}
+
+int main() {
+    ListNode *head = new ListNode;
+    head->val = 1;
+    head->next = NULL;
+    ListNode *second = new ListNode;
+    second->val = 2;
+    second->next = NULL;
+    head->next = second;
+    cout << head->val << " " << second->val << endl;
+    ListNode *head1 = new ListNode;
+    head1 = reverseList(head);
+    cout << head1->val << " " << head1->next->val;
+    return 0;
+}
+
+ ```
+ ```
  class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         if head == None: return None
