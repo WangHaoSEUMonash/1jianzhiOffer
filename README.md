@@ -1,3 +1,69 @@
+## IoU C++
+```
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+using namespace std;
+
+class bbox
+{
+public:
+    bbox();
+    bbox(int lt_x, int lt_y, int br_x, int br_y);
+    friend float IoU(bbox b1, bbox b2);
+    ~bbox();
+private:
+    int ltx;
+    int lty;
+    int brx;
+    int bry;
+};
+
+bbox::bbox(int lt_x, int lt_y, int br_x, int br_y){
+    ltx = lt_x;
+    lty = lt_y;
+    brx = br_x;
+    bry = br_y;
+}
+
+bbox::~bbox(){}
+
+float IoU(bbox b1, bbox b2) {
+    float iou_ratio;
+    // 两个框的宽和高
+    int width1 = abs(b1.brx - b1.ltx);
+    int height1 = abs(b1.bry - b1.lty);
+    int width2 = abs(b2.brx - b2.ltx);
+    int height2 = abs(b2.bry - b2.lty);
+
+    // 并区域x,y的最大值
+    int x_max = max(max(b1.ltx, b1.brx), max(b2.ltx, b2.brx));
+    int x_min = min(min(b1.ltx, b1.brx), min(b2.ltx, b2.brx));
+    int y_max = max(max(b1.lty, b1.bry), max(b2.lty, b2.bry));
+    int y_min = min(min(b1.lty, b1.bry), min(b2.lty, b2.bry));
+
+    // 交区域的宽和高
+    int iou_width = x_min + width1 + width2 - x_max;
+    int iou_height = y_min + height1 + height2 - y_max;
+
+    if (iou_width <= 0 || iou_height <= 0)  iou_ratio = 0;
+    else {
+        int iou_area = iou_width * iou_height;
+        int area1 = width1 * height1;
+        int area2 = width2 * height2;
+        iou_ratio = (float)iou_area / (float)(area1 + area2 - iou_area);
+    }
+    return iou_ratio;
+}
+
+int main()
+{
+    bbox box1(1,5,3,2), box2(2,8,5,3);
+    float iu = IoU(box1, box2);
+    cout << iu;
+    return 0;
+}
+```
 # 《数据结构与算法》
 ## 排序
 [912. 排序数组](https://leetcode-cn.com/problems/sort-an-array/)
