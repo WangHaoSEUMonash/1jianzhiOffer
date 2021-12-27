@@ -1,3 +1,67 @@
+### IoU
+
+```
+def IOU( box1, box2 ):
+    """
+    :param box1:[x1,y1,x2,y2] 左上角的坐标与右下角的坐标
+    """
+    width1, height1 = abs(box1[2] - box1[0]), abs(box1[1] - box1[3])
+    width2, height2 = abs(box2[2] - box2[0]), abs(box2[1] - box2[3])
+    
+    # 并区域的x，y的最大最小值
+    x_max, x_min = max(box1[0],box1[2],box2[0],box2[2]), min(box1[0],box1[2],box2[0],box2[2])
+    y_max, y_min = max(box1[1],box1[3],box2[1],box2[3]), min(box1[1],box1[3],box2[1],box2[3])
+    
+    iou_width = x_min + width1 + width2 - x_max
+    iou_height = y_min + height1 + height2 - y_max
+    
+    if iou_width <= 0 or iou_height <= 0:
+        iou_ratio = 0
+    else:
+        iou_area = iou_width * iou_height # 交集的面积
+        box1_area, box2_area = width1 * height1, width2 * height2
+        iou_ratio = iou_area / (box1_area + box2_area - iou_area) # 并集的面积
+    return iou_ratio
+    
+box1 = [1,3,4,1]
+box2 = [2,4,5,2]
+print(IOU(box1,box2))
+```
+
+### NMS [(出处)](https://blog.csdn.net/a1103688841/article/details/89711120)
+```
+def nms(self, bboxes, scores, thresh=0.5):
+    x1, y1 = bboxes[:,0], bboxes[:,1]
+    x2, y2 = bboxes[:,2], bboxes[:,3]
+    areas = (y2-y1+1)*(x2-x1+1)
+    scores = bboxes[:,4]
+    
+    keep = []
+    index = scores.argsort()[::-1]
+    
+    while index.size > 0:
+        i = index[0] # 取出第一个方框进行和其他方框比对，看看有没有合并，第一个总是最大的
+        
+        keep.append(i) # keep保留的是索引值，不是分数
+        # 计算交集的左上角和右下角
+        x_lt, y_lt = np.maximum(x1[i], x1[index[1:]]), np.maximum(y1[i], y1[index[1:]])
+        x_rb, y_rb = np.minimum(x2[i], x2[index[1:]]), np.minimum(y2[i], y2[index[1:]])
+        
+        # 如果两个方框相交，x_rb-x_lt和y_rb-y_lt是正的，如果两个方框不相交，x_rb-x_lt和y_rb-y_lt是负的，我们把不相交的W和H设为0.
+        w, h = np.maximum(0, x_rb-x_lt+1), np.maximum(0, y_rb-y_lt+1)
+        overlaps = w * h
+        IoUs = overlaps / (areas[i] + areas[index[1:]] - overlaps)
+        
+        # 接下来是合并重叠度最大的方框，也就是合IoUs中值大于thresh的方框，合并这些方框只保留下分数最高的。经过排序当前我们操作的方框就是分数最高的，所以剔除其他和当前重叠度最高的方框
+        idx = np.where(IoUs <= thresh)[0]
+        
+        #把留下来框在进行NMS操作，留下的框是去除当前操作的框，和当前操作的框重叠度大于thresh的框，每一次都会先去除当前操作框，所以索引的列表就会向前移动移位，要还原就+1，向后移动一位
+        index = index[idx+1]
+    
+    return keep
+  
+```
+
 ## IoU C++
 ```
 #include <iostream>
